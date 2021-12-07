@@ -1,11 +1,17 @@
 import 'core-js';
 import 'regenerator-runtime/runtime';
+import 'dayjs/locale/ja';
+
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
 import { AppContainer } from './containers/AppContainer';
+
+dayjs.extend(localizedFormat);
 
 window.addEventListener('load', () => {
   ReactDOM.render(
