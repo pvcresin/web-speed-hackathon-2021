@@ -22,10 +22,6 @@ const CoveredImage = ({ alt, src }) => {
     return data !== null ? sizeOf(Buffer.from(data)) : null;
   }, [data]);
 
-  const blobUrl = React.useMemo(() => {
-    return data !== null ? URL.createObjectURL(new Blob([data])) : null;
-  }, [data]);
-
   const [containerSize, setContainerSize] = React.useState({ height: 0, width: 0 });
   /** @type {React.RefCallback<HTMLDivElement>} */
   const callbackRef = React.useCallback((el) => {
@@ -35,7 +31,7 @@ const CoveredImage = ({ alt, src }) => {
     });
   }, []);
 
-  if (isLoading || data === null || blobUrl === null) {
+  if (isLoading || data === null) {
     return null;
   }
 
@@ -50,7 +46,7 @@ const CoveredImage = ({ alt, src }) => {
           'w-auto h-full': containerRatio > imageRatio,
           'w-full h-auto': containerRatio <= imageRatio,
         })}
-        src={blobUrl}
+        src={src}
       />
     </div>
   );
