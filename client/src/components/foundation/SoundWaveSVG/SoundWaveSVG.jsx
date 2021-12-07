@@ -2,6 +2,7 @@ import map from 'lodash/map';
 import zip from 'lodash/zip';
 import mean from 'lodash/mean';
 import chunk from 'lodash/chunk';
+import lMax from 'lodash/max';
 import React from 'react';
 
 /**
@@ -28,7 +29,7 @@ async function calculate(data) {
   // chunk ごとに平均を取る
   const peaks = map(chunks, mean);
   // chunk の平均の中から最大値を取る
-  const max = math.max(peaks);
+  const max = lMax(peaks);
 
   return { max, peaks };
 }
