@@ -1,5 +1,7 @@
 ## 開発
 
+https://github.com/pvcresin/web-speed-hackathon-2021/blob/main/docs/DEVELOPMENT.md
+
 root で `yarn start` で API サーバ起動
 client で `yarn develop` で devServer 起動
 `yarn analyze` でバンドルアナライザ起動
