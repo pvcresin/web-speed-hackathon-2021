@@ -35,6 +35,7 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 - [x] scrollで2 ** 18
 - [x] 画像や音声周りの CLS 対応（AspectRatio など）
 - [x] 画像の blob 変換削除
+- [x] 謎のsetTimeout
 
 TODO
 
