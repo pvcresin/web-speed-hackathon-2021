@@ -13,12 +13,18 @@ const DIST_PATH = path.resolve(__dirname, '../dist');
 const config = {
   devServer: {
     historyApiFallback: true,
+    https: true,
     host: '0.0.0.0',
     port: 8080,
     proxy: {
-      '/api': 'http://localhost:3000',
+      '/api': {
+        target: 'https://localhost:3000',
+        secure: false,
+      },
     },
     static: [PUBLIC_PATH, UPLOAD_PATH],
+    http2: true,
+    compress: true,
   },
   devtool: 'inline-source-map',
   entry: {
