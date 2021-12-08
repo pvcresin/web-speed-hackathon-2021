@@ -32,16 +32,18 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 - [x] moment to dayjs（L のフォーマットは localize のプラグイン必要だった）
 - [x] lodash の個別 import（Math.max との違いにハマった。VRT で波形表示されてないのに気づけた）
 - [x] JS の defer
-- [x] scrollで2 ** 18
+- [x] scroll で 2 \*\* 18
 - [x] 画像や音声周りの CLS 対応（AspectRatio など）
 - [x] 画像の blob 変換削除
-- [x] 謎のsetTimeout
+- [x] 謎の setTimeout
+- [x] 画像の LazyLoading
+- [x] http1.1 -> http2 への移行（spdy、https）
 
 TODO
 
 - [ ] 音声の blob 変換削除
 - [ ] 画像サイズ削減（小さく）
-- [ ] 画像や CSS などの lazyload
+- [ ] CSS などの lazyload
 - [ ] バンドルサイズ削減（FontAwesome、Lodash、jQuery、ProvidePlugin まわり）
 - [ ] WebFont まわりのチェック
 - [ ] 画像や音声ファイルなどの最適化
@@ -49,4 +51,3 @@ TODO
 - [ ] Code Splitting（dynamic import）
 - [ ] Purge CSS
 - [ ] Sourcemap 最適化
-- [ ] サーバ側見れてない
