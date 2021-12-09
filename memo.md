@@ -38,12 +38,13 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 - [x] 謎の setTimeout
 - [x] 画像の LazyLoading
 - [x] 画像の最適化（サイズ削減・AVIF・squoosh）
+- [x] jQuery 削除
 
 TODO
 
 - [ ] 音声の blob 変換削除
 - [ ] CSS などの lazyload
-- [ ] バンドルサイズ削減（FontAwesome、Lodash、jQuery、ProvidePlugin まわり）
+- [ ] バンドルサイズ削減（FontAwesome、Lodash、ProvidePlugin まわり）
 - [ ] WebFont まわりのチェック
 - [ ] 音声ファイルなどの最適化
 - [ ] コードやメディアのファイル形式の選定
