@@ -3,7 +3,7 @@
  * @returns {string}
  */
 function getImagePath(imageId) {
-  return `/images/pictures/${imageId}.jpg`;
+  return `/images/pictures-small/${imageId}.avif`;
 }
 
 /**
