@@ -1,3 +1,4 @@
+import http from 'http';
 import spdy from 'spdy';
 import fs from 'fs';
 import path from 'path';
@@ -6,13 +7,15 @@ import { app } from './app';
 import { insertSeeds } from './seeds';
 import { sequelize } from './sequelize';
 
-const options = {
-  key: fs.readFileSync(path.resolve(__dirname, '../keys/key.pem')),
-  cert: fs.readFileSync(path.resolve(__dirname, '../keys/cert.pem')),
-};
-
 async function main() {
-  const server = spdy.createServer(options, app);
+  const server = http.createServer(app);
+  // const server = spdy.createServer(
+  //   {
+  //     key: fs.readFileSync(path.resolve(__dirname, '../keys/key.pem')),
+  //     cert: fs.readFileSync(path.resolve(__dirname, '../keys/cert.pem')),
+  //   },
+  //   app,
+  // );
 
   // データベースの初期化をします
   await sequelize.sync({

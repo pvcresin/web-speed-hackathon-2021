@@ -9,21 +9,23 @@ const PUBLIC_PATH = path.resolve(__dirname, '../public');
 const UPLOAD_PATH = path.resolve(__dirname, '../upload');
 const DIST_PATH = path.resolve(__dirname, '../dist');
 
+const useSpdy = false;
+
 /** @type {import('webpack').Configuration} */
 const config = {
   devServer: {
     historyApiFallback: true,
-    https: true,
+    https: useSpdy,
     host: '0.0.0.0',
     port: 8080,
     proxy: {
       '/api': {
-        target: 'https://localhost:3000',
+        target: useSpdy ? 'https://localhost:3000' : 'http://localhost:3000',
         secure: false,
       },
     },
     static: [PUBLIC_PATH, UPLOAD_PATH],
-    http2: true,
+    http2: useSpdy,
     compress: true,
   },
   devtool: 'inline-source-map',
