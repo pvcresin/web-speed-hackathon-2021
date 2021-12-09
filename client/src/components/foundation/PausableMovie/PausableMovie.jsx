@@ -16,8 +16,6 @@ import { FontAwesomeIcon } from '../FontAwesomeIcon';
  * @type {React.VFC<Props>}
  */
 const PausableMovie = ({ src }) => {
-  const { data, isLoading } = useFetch(src, fetchBinary);
-
   /** @type {React.RefObject<HTMLVideoElement>} */
   const animatorRef = React.useRef(null);
 
@@ -36,21 +34,19 @@ const PausableMovie = ({ src }) => {
 
   return (
     <AspectRatioBox aspectHeight={1} aspectWidth={1}>
-      {isLoading || data === null ? null : (
-        <button className="group relative block w-full h-full" onClick={handleClick} type="button">
-          <video className="w-full" ref={animatorRef} src={src} autoPlay muted />
-          <div
-            className={classNames(
-              'absolute left-1/2 top-1/2 flex items-center justify-center w-16 h-16 text-white text-3xl bg-black bg-opacity-50 rounded-full transform -translate-x-1/2 -translate-y-1/2',
-              {
-                'opacity-0 group-hover:opacity-100': isPlaying,
-              },
-            )}
-          >
-            <FontAwesomeIcon iconType={isPlaying ? 'pause' : 'play'} styleType="solid" />
-          </div>
-        </button>
-      )}
+      <button className="group relative block w-full h-full" onClick={handleClick} type="button">
+        <video className="w-full" ref={animatorRef} src={src} autoPlay muted />
+        <div
+          className={classNames(
+            'absolute left-1/2 top-1/2 flex items-center justify-center w-16 h-16 text-white text-3xl bg-black bg-opacity-50 rounded-full transform -translate-x-1/2 -translate-y-1/2',
+            {
+              'opacity-0 group-hover:opacity-100': isPlaying,
+            },
+          )}
+        >
+          <FontAwesomeIcon iconType={isPlaying ? 'pause' : 'play'} styleType="solid" />
+        </div>
+      </button>
     </AspectRatioBox>
   );
 };
