@@ -1,4 +1,4 @@
-import { gzip } from 'pako';
+import { gzipSync } from 'fflate';
 
 /**
  * @param {string} url
@@ -59,7 +59,8 @@ async function sendFile(url, file) {
  */
 async function sendJSON(url, data) {
   const jsonString = JSON.stringify(data);
-  const compressed = gzip(jsonString);
+  const uint8Array = new TextEncoder().encode(jsonString);
+  const compressed = gzipSync(uint8Array);
 
   const result = await fetch(url, {
     headers: {
