@@ -37,17 +37,17 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 - [x] 画像の blob 変換削除
 - [x] 謎の setTimeout
 - [x] 画像の LazyLoading
-- [x] http1.1 -> http2 への移行（spdy、https）
+- [x] 画像の最適化（サイズ削減・AVIF・squoosh）
 
 TODO
 
 - [ ] 音声の blob 変換削除
-- [ ] 画像サイズ削減（小さく）
 - [ ] CSS などの lazyload
 - [ ] バンドルサイズ削減（FontAwesome、Lodash、jQuery、ProvidePlugin まわり）
 - [ ] WebFont まわりのチェック
-- [ ] 画像や音声ファイルなどの最適化
+- [ ] 音声ファイルなどの最適化
 - [ ] コードやメディアのファイル形式の選定
 - [ ] Code Splitting（dynamic import）
 - [ ] Purge CSS
 - [ ] Sourcemap 最適化
+- [ ] http1.1 -> http2,3 への移行（spdy、https）
