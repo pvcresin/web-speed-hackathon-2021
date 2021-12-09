@@ -6,7 +6,9 @@ const cssnano = require('cssnano');
 module.exports = {
   plugins: [
     postcssImport(),
-    tailwindcss(),
+    tailwindcss({
+      purge: ['./src/**/*.jsx'],
+    }),
     postcssPresetEnv({
       stage: 3,
     }),
