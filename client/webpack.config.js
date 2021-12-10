@@ -36,7 +36,6 @@ const config = {
       path.resolve(SRC_PATH, './buildinfo.js'),
       path.resolve(SRC_PATH, './index.jsx'),
     ],
-    webfont: [path.resolve(SRC_PATH, './styles/webfont.css')],
   },
   module: {
     rules: [
@@ -73,7 +72,8 @@ const config = {
       filename: 'styles/[name].css',
     }),
     new HtmlWebpackPlugin({
-      inject: false,
+      inject: true,
+      hash: true,
       template: path.resolve(SRC_PATH, './index.html'),
     }),
   ],
