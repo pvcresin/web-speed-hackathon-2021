@@ -9,6 +9,7 @@ const PUBLIC_PATH = path.resolve(__dirname, '../public');
 const UPLOAD_PATH = path.resolve(__dirname, '../upload');
 const DIST_PATH = path.resolve(__dirname, '../dist');
 
+const isDev = process.env.NODE_ENV === 'development';
 const useSpdy = false;
 
 /** @type {import('webpack').Configuration} */
@@ -28,7 +29,7 @@ const config = {
     http2: useSpdy,
     compress: true,
   },
-  devtool: 'inline-source-map',
+  devtool: isDev ? 'inline-source-map' : false,
   entry: {
     main: [
       path.resolve(SRC_PATH, './index.css'),
