@@ -1,1 +1,1 @@
-export { TimelineContainer as default } from './TimelineContainer';
+export { TimelineContainer } from './TimelineContainer';
