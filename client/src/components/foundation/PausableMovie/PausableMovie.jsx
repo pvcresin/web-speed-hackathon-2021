@@ -42,7 +42,7 @@ const PausableMovie = ({ src }) => {
           autoPlay
           muted
           loop
-          playsinline
+          playsInline
           disableRemotePlayback
         />
         <div
