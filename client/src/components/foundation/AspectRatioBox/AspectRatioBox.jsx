@@ -16,7 +16,6 @@ const AspectRatioBox = ({ aspectHeight, aspectWidth, children }) => {
     <div
       className="relative w-full h-1"
       style={{
-        width: '100%',
         // アスペクト比を保ちながらレスポンシブ対応
         paddingTop: `${(aspectHeight / aspectWidth) * 100}%`,
       }}
