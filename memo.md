@@ -28,7 +28,7 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 
 やった
 
-- [x] code-js の polyfill 削減(browserslist, webpack の entry から index で副作用あり import に)
+- [x] code-js の polyfill 削減(browserslist, usage)
 - [x] moment to dayjs（L のフォーマットは localize のプラグイン必要だった）
 - [x] lodash の個別 import（Math.max との違いにハマった。VRT で波形表示されてないのに気づけた）
 - [x] JS の defer
@@ -39,16 +39,17 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 - [x] 画像の LazyLoading
 - [x] 画像の最適化（サイズ削減・AVIF・squoosh）
 - [x] jQuery 削除
+- [x] Purge CSS
+- [x] CSS の lazyload
+- [x] Sourcemap 最適化
+- [x] FontAwesome（svg） 削減
 
 TODO
 
 - [ ] 音声の blob 変換削除
-- [ ] CSS などの lazyload
 - [ ] バンドルサイズ削減（FontAwesome、Lodash、ProvidePlugin まわり）
 - [ ] WebFont まわりのチェック
 - [ ] 音声ファイルなどの最適化
 - [ ] コードやメディアのファイル形式の選定
 - [ ] Code Splitting（dynamic import）
-- [ ] Purge CSS
-- [ ] Sourcemap 最適化
 - [ ] http1.1 -> http2,3 への移行（spdy、https）
