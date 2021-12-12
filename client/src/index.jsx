@@ -1,5 +1,3 @@
-import 'core-js';
-import 'regenerator-runtime/runtime';
 import 'dayjs/locale/ja';
 
 import dayjs from 'dayjs';
