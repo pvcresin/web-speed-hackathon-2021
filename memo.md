@@ -46,6 +46,8 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 
 TODO
 
+- [ ] 画像ファイルによってはアップロードできずにエラーになってそう
+- [ ] 音声の AAC 化
 - [ ] 音声の blob 変換削除
 - [ ] バンドルサイズ削減（FontAwesome、Lodash、ProvidePlugin まわり）
 - [ ] WebFont まわりのチェック
