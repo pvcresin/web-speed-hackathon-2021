@@ -47,11 +47,13 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 TODO
 
 - [ ] 画像ファイルによってはアップロードできずにエラーになってそう
+- [ ] HTML の Inject で Chunk をいれられるようにする
+- [ ] Code Splitting（dynamic import）
+- [ ] Critical CSS のインライン化
 - [ ] 音声の AAC 化
 - [ ] 音声の blob 変換削除
 - [ ] バンドルサイズ削減（FontAwesome、Lodash、ProvidePlugin まわり）
 - [ ] WebFont まわりのチェック
 - [ ] 音声ファイルなどの最適化
 - [ ] コードやメディアのファイル形式の選定
-- [ ] Code Splitting（dynamic import）
 - [ ] http1.1 -> http2,3 への移行（spdy、https）
