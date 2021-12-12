@@ -38,8 +38,6 @@ const PausableMovie = ({ src }) => {
     });
   }, []);
 
-  console.log({ defaultIsPlaying });
-
   return (
     <AspectRatioBox aspectHeight={1} aspectWidth={1}>
       <button className="group relative block w-full h-full" onClick={handleClick} type="button">
