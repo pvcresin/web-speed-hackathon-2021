@@ -16,11 +16,8 @@ import { SoundWaveSVG } from '../SoundWaveSVG';
  * @type {React.VFC<Props>}
  */
 const SoundPlayer = ({ sound }) => {
-  const { data, isLoading } = useFetch(getSoundPath(sound.id), fetchBinary);
-
-  const blobUrl = React.useMemo(() => {
-    return data !== null ? URL.createObjectURL(new Blob([data])) : null;
-  }, [data]);
+  const src = React.useMemo(() => getSoundPath(sound.id), [sound.id]);
+  const { data, isLoading } = useFetch(src, fetchBinary);
 
   const [currentTimeRatio, setCurrentTimeRatio] = React.useState(0);
   /** @type {React.ReactEventHandler<HTMLAudioElement>} */
@@ -45,7 +42,7 @@ const SoundPlayer = ({ sound }) => {
 
   return (
     <div className="flex items-center justify-center w-full h-full bg-gray-300">
-      {blobUrl !== null && <audio ref={audioRef} loop={true} onTimeUpdate={handleTimeUpdate} src={blobUrl} />}
+      <audio ref={audioRef} loop={true} onTimeUpdate={handleTimeUpdate} src={src} />
       <div className="p-2">
         <button
           className="flex items-center justify-center w-8 h-8 text-white text-sm bg-blue-600 rounded-full hover:opacity-75"
