@@ -19,7 +19,13 @@ const PausableMovie = ({ src }) => {
   /** @type {React.RefObject<HTMLVideoElement>} */
   const animatorRef = React.useRef(null);
 
-  const [isPlaying, setIsPlaying] = React.useState(true);
+  const defaultIsPlaying = React.useMemo(() => {
+    const disableAutoPlay = Boolean(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    // 視覚効果 off のとき GIF を自動再生しない
+    return !disableAutoPlay;
+  }, []);
+
+  const [isPlaying, setIsPlaying] = React.useState(defaultIsPlaying);
 
   const handleClick = React.useCallback(() => {
     setIsPlaying((isPlaying) => {
@@ -32,6 +38,8 @@ const PausableMovie = ({ src }) => {
     });
   }, []);
 
+  console.log({ defaultIsPlaying });
+
   return (
     <AspectRatioBox aspectHeight={1} aspectWidth={1}>
       <button className="group relative block w-full h-full" onClick={handleClick} type="button">
@@ -39,7 +47,7 @@ const PausableMovie = ({ src }) => {
           className="w-full h-full object-cover"
           ref={animatorRef}
           src={src}
-          autoPlay
+          autoPlay={defaultIsPlaying}
           muted
           loop
           playsInline
