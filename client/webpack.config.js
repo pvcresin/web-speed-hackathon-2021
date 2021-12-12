@@ -9,34 +9,29 @@ const PUBLIC_PATH = path.resolve(__dirname, '../public');
 const UPLOAD_PATH = path.resolve(__dirname, '../upload');
 const DIST_PATH = path.resolve(__dirname, '../dist');
 
-const isDev = process.env.NODE_ENV === 'development';
-const useSpdy = false;
-
 /** @type {import('webpack').Configuration} */
 const config = {
   devServer: {
     historyApiFallback: true,
-    https: useSpdy,
     host: '0.0.0.0',
     port: 8080,
     proxy: {
-      '/api': {
-        target: useSpdy ? 'https://localhost:3000' : 'http://localhost:3000',
-        secure: false,
-      },
+      '/api': 'http://localhost:3000',
     },
     static: [PUBLIC_PATH, UPLOAD_PATH],
-    http2: useSpdy,
-    compress: true,
   },
-  devtool: isDev ? 'inline-source-map' : false,
+  devtool: 'inline-source-map',
   entry: {
     main: [
+      'core-js',
+      'regenerator-runtime/runtime',
+      'jquery-binarytransport',
       path.resolve(SRC_PATH, './index.css'),
       path.resolve(SRC_PATH, './buildinfo.js'),
       path.resolve(SRC_PATH, './index.jsx'),
     ],
   },
+  mode: 'none',
   module: {
     rules: [
       {
@@ -60,20 +55,22 @@ const config = {
   },
   plugins: [
     new webpack.ProvidePlugin({
+      $: 'jquery',
+      AudioContext: ['standardized-audio-context', 'AudioContext'],
       Buffer: ['buffer', 'Buffer'],
+      'window.jQuery': 'jquery',
     }),
     new webpack.EnvironmentPlugin({
       BUILD_DATE: new Date().toISOString(),
       // Heroku では SOURCE_VERSION 環境変数から commit hash を参照できます
       COMMIT_HASH: process.env.SOURCE_VERSION || '',
-      NODE_ENV: process.env.NODE_ENV || 'production',
+      NODE_ENV: 'development',
     }),
     new MiniCssExtractPlugin({
       filename: 'styles/[name].css',
     }),
     new HtmlWebpackPlugin({
-      inject: true,
-      hash: true,
+      inject: false,
       template: path.resolve(SRC_PATH, './index.html'),
     }),
   ],

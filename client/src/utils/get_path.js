@@ -3,7 +3,7 @@
  * @returns {string}
  */
 function getImagePath(imageId) {
-  return `/images/${imageId}.avif`;
+  return `/images/${imageId}.jpg`;
 }
 
 /**
@@ -11,7 +11,7 @@ function getImagePath(imageId) {
  * @returns {string}
  */
 function getMoviePath(movieId) {
-  return `/movies/${movieId}.webm`;
+  return `/movies/${movieId}.gif`;
 }
 
 /**
@@ -27,7 +27,7 @@ function getSoundPath(soundId) {
  * @returns {string}
  */
 function getProfileImagePath(profileImageId) {
-  return `/images/profiles/${profileImageId}.avif`;
+  return `/images/profiles/${profileImageId}.jpg`;
 }
 
 export { getImagePath, getMoviePath, getSoundPath, getProfileImagePath };

@@ -43,15 +43,18 @@ const SoundPlayer = ({ sound }) => {
     });
   }, []);
 
+  if (isLoading || data === null || blobUrl === null) {
+    return null;
+  }
+
   return (
     <div className="flex items-center justify-center w-full h-full bg-gray-300">
-      {blobUrl !== null && <audio ref={audioRef} loop={true} onTimeUpdate={handleTimeUpdate} src={blobUrl} />}
+      <audio ref={audioRef} loop={true} onTimeUpdate={handleTimeUpdate} src={blobUrl} />
       <div className="p-2">
         <button
           className="flex items-center justify-center w-8 h-8 text-white text-sm bg-blue-600 rounded-full hover:opacity-75"
           onClick={handleTogglePlaying}
           type="button"
-          disabled={isLoading}
         >
           <FontAwesomeIcon iconType={isPlaying ? 'pause' : 'play'} styleType="solid" />
         </button>
@@ -62,7 +65,9 @@ const SoundPlayer = ({ sound }) => {
         <div className="pt-2">
           <AspectRatioBox aspectHeight={1} aspectWidth={10}>
             <div className="relative w-full h-full">
-              <div className="absolute inset-0 w-full h-full">{data !== null && <SoundWaveSVG soundData={data} />}</div>
+              <div className="absolute inset-0 w-full h-full">
+                <SoundWaveSVG soundData={data} />
+              </div>
               <div
                 className="absolute inset-0 w-full h-full bg-gray-300 opacity-75"
                 style={{ left: `${currentTimeRatio * 100}%` }}

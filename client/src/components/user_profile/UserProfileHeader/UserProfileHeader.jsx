@@ -1,5 +1,5 @@
 import FastAverageColor from 'fast-average-color';
-import dayjs from 'dayjs';
+import moment from 'moment';
 import React from 'react';
 
 import { getProfileImagePath } from '../../../utils/get_path';
@@ -27,13 +27,7 @@ const UserProfileHeader = ({ user }) => {
     <header className="relative">
       <div className="h-32 bg-gray-300" style={{ backgroundColor: averageColor }}></div>
       <div className="absolute left-2/4 m-0 w-28 h-28 bg-gray-300 border border-gray-300 rounded-full overflow-hidden transform -translate-x-1/2 -translate-y-1/2 sm:w-32 sm:h-32">
-        <img
-          alt=""
-          crossOrigin="anonymous"
-          onLoad={handleLoadImage}
-          src={getProfileImagePath(user.profileImage.id)}
-          loading="lazy"
-        />
+        <img alt="" crossOrigin="anonymous" onLoad={handleLoadImage} src={getProfileImagePath(user.profileImage.id)} />
       </div>
       <div className="pt-20 px-4">
         <h1 className="text-2xl font-bold">{user.name}</h1>
@@ -44,8 +38,8 @@ const UserProfileHeader = ({ user }) => {
             <FontAwesomeIcon iconType="calendar-alt" styleType="regular" />
           </span>
           <span>
-            <time dateTime={dayjs(user.createdAt).toISOString()}>
-              {dayjs(user.createdAt).locale('ja').format('LL')}
+            <time dateTime={moment(user.createdAt).toISOString()}>
+              {moment(user.createdAt).locale('ja').format('LL')}
             </time>
             からサービスを利用しています
           </span>

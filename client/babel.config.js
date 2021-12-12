@@ -4,9 +4,15 @@ module.exports = {
       '@babel/preset-env',
       {
         corejs: '3',
-        useBuiltIns: 'usage',
+        modules: 'commonjs',
+        useBuiltIns: false,
       },
     ],
-    ['@babel/preset-react'],
+    [
+      '@babel/preset-react',
+      {
+        development: true,
+      },
+    ],
   ],
 };

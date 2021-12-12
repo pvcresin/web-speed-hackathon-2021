@@ -1,32 +1,22 @@
-import { ImagePool } from '@squoosh/lib';
+import sharp from 'sharp';
 
 /**
  * @param {Buffer} buffer
  * @param {object} options
- * @param {string} [options.extension]
+ * @param {number} [options.extension]
  * @param {number} [options.height]
  * @param {number} [options.width]
- * @returns {Promise<Buffer>}
+ * @returns {Promise<Uint8Array>}
  */
 async function convertImage(buffer, options) {
-  const imagePool = new ImagePool();
-
-  const image = imagePool.ingestImage(buffer);
-  await image.decoded;
-
-  const preprocessOptions = {
-    resize: { enabled: true, width: options.width, height: options.height },
-  };
-  await image.preprocess(preprocessOptions);
-
-  const encodeOptions = { [options.extension ?? 'jpeg']: 'auto' };
-  await image.encode(encodeOptions);
-
-  const rawEncodedImage = await image.encodedWith.avif;
-
-  await imagePool.close();
-
-  return rawEncodedImage.binary;
+  return sharp(buffer)
+    .resize({
+      fit: 'cover',
+      height: options.height,
+      width: options.width,
+    })
+    .toFormat(options.extension ?? 'jpeg')
+    .toBuffer();
 }
 
 export { convertImage };

@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import moment from 'moment';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -23,11 +23,7 @@ const PostItem = ({ post }) => {
               className="block w-14 h-14 bg-gray-300 border border-gray-300 rounded-full hover:opacity-95 overflow-hidden sm:w-16 sm:h-16"
               to={`/users/${post.user.username}`}
             >
-              <img
-                alt={post.user.profileImage.alt}
-                src={getProfileImagePath(post.user.profileImage.id)}
-                loading="lazy"
-              />
+              <img alt={post.user.profileImage.alt} src={getProfileImagePath(post.user.profileImage.id)} />
             </Link>
           </div>
           <div className="flex-grow flex-shrink min-w-0 whitespace-nowrap overflow-hidden overflow-ellipsis">
@@ -62,8 +58,8 @@ const PostItem = ({ post }) => {
           ) : null}
           <p className="mt-2 text-sm sm:mt-4">
             <Link className="text-gray-500 hover:underline" to={`/posts/${post.id}`}>
-              <time dateTime={dayjs(post.createdAt).toISOString()}>
-                {dayjs(post.createdAt).locale('ja').format('LL')}
+              <time dateTime={moment(post.createdAt).toISOString()}>
+                {moment(post.createdAt).locale('ja').format('LL')}
               </time>
             </Link>
           </p>

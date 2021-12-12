@@ -1,16 +1,17 @@
-import { gzipSync } from 'fflate';
+import { gzip } from 'pako';
 
 /**
  * @param {string} url
  * @returns {Promise<ArrayBuffer>}
  */
 async function fetchBinary(url) {
-  const result = await fetch(url)
-    .then((res) => {
-      if (!res.ok) return null;
-      return res.arrayBuffer();
-    })
-    .catch(() => null);
+  const result = await $.ajax({
+    async: false,
+    dataType: 'binary',
+    method: 'GET',
+    responseType: 'arraybuffer',
+    url,
+  });
   return result;
 }
 
@@ -20,12 +21,12 @@ async function fetchBinary(url) {
  * @returns {Promise<T>}
  */
 async function fetchJSON(url) {
-  const result = await fetch(url)
-    .then((res) => {
-      if (!res.ok) return null;
-      return res.json();
-    })
-    .catch(() => null);
+  const result = await $.ajax({
+    async: false,
+    dataType: 'json',
+    method: 'GET',
+    url,
+  });
   return result;
 }
 
@@ -36,18 +37,17 @@ async function fetchJSON(url) {
  * @returns {Promise<T>}
  */
 async function sendFile(url, file) {
-  const result = await fetch(url, {
+  const result = await $.ajax({
+    async: false,
+    data: file,
+    dataType: 'json',
     headers: {
       'Content-Type': 'application/octet-stream',
     },
     method: 'POST',
-    body: file,
-  })
-    .then((res) => {
-      if (!res.ok) return null;
-      return res.json();
-    })
-    .catch(() => null);
+    processData: false,
+    url,
+  });
   return result;
 }
 
@@ -60,21 +60,20 @@ async function sendFile(url, file) {
 async function sendJSON(url, data) {
   const jsonString = JSON.stringify(data);
   const uint8Array = new TextEncoder().encode(jsonString);
-  const compressed = gzipSync(uint8Array);
+  const compressed = gzip(uint8Array);
 
-  const result = await fetch(url, {
+  const result = await $.ajax({
+    async: false,
+    data: compressed,
+    dataType: 'json',
     headers: {
       'Content-Encoding': 'gzip',
       'Content-Type': 'application/json',
     },
     method: 'POST',
-    body: compressed,
-  })
-    .then((res) => {
-      if (!res.ok) return null;
-      return res.json();
-    })
-    .catch(() => null);
+    processData: false,
+    url,
+  });
   return result;
 }
 

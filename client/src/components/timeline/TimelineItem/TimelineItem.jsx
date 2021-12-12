@@ -1,4 +1,4 @@
-import dayjs from 'dayjs';
+import moment from 'moment';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -57,7 +57,7 @@ const TimelineItem = ({ post }) => {
             className="block w-12 h-12 bg-gray-300 border border-gray-300 rounded-full hover:opacity-75 overflow-hidden sm:w-16 sm:h-16"
             to={`/users/${post.user.username}`}
           >
-            <img alt={post.user.profileImage.alt} src={getProfileImagePath(post.user.profileImage.id)} loading="lazy" />
+            <img alt={post.user.profileImage.alt} src={getProfileImagePath(post.user.profileImage.id)} />
           </Link>
         </div>
         <div className="flex-grow flex-shrink min-w-0">
@@ -70,8 +70,8 @@ const TimelineItem = ({ post }) => {
             </Link>
             <span className="pr-1 text-gray-500">-</span>
             <Link className="pr-1 text-gray-500 hover:underline" to={`/posts/${post.id}`}>
-              <time dateTime={dayjs(post.createdAt).toISOString()}>
-                {dayjs(post.createdAt).locale('ja').format('LL')}
+              <time dateTime={moment(post.createdAt).toISOString()}>
+                {moment(post.createdAt).locale('ja').format('LL')}
               </time>
             </Link>
           </p>
