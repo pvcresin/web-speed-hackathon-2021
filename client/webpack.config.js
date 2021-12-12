@@ -72,8 +72,8 @@ const config = {
       filename: 'styles/[name].css',
     }),
     new HtmlWebpackPlugin({
-      inject: true,
-      hash: true,
+      // inject: true,
+      // hash: true,
       template: path.resolve(SRC_PATH, './index.html'),
     }),
   ],
