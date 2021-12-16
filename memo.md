@@ -59,3 +59,5 @@ TODO
 - [ ] http1.1 -> http2,3 への移行（spdy、https）
 - [ ] IntersectionObserver, requestAnimationFrame 周りでスクロールの処理間引く
 - [ ] React.memo 足りない場所いろいろありそう
+- [ ] 規約ページは静的に配信できる
+- [ ] SSR の導入
