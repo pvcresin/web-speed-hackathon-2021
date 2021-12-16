@@ -20,7 +20,7 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.raw({ limit: '10mb' }));
 
-const MAX_AGE_SECOND = 60 * 60 * 6; // 6h
+const MAX_AGE_SECOND = 60 * 60 * 1; // 1h
 
 app.use((_req, res, next) => {
   res.header({
