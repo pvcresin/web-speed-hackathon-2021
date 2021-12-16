@@ -20,11 +20,9 @@ app.use(
 app.use(bodyParser.json());
 app.use(bodyParser.raw({ limit: '10mb' }));
 
-const MAX_AGE_SECOND = 60 * 60 * 1; // 1h
-
 app.use((_req, res, next) => {
   res.header({
-    'Cache-Control': `max-age=${MAX_AGE_SECOND}, no-transform`,
+    // 'Cache-Control': 'no-transform',
     Connection: 'close',
   });
   return next();
