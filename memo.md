@@ -44,16 +44,18 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 - [x] Sourcemap 最適化
 - [x] FontAwesome（svg） 削減
 - [x] Code Splitting（dynamic import）
+- [x] 音声の AAC 化
+- [x] WebFont (font-display: swap;に)
+- [x] JS/CSS を brotli で配信（Prefetch 分は未対応）
+- [x] Inject で Chunk をいれられるようにする JS を Prefetch した
+- [x] Cache-Control: max-age を伸ばす + contenthash つけた
 
 TODO
 
 - [ ] 画像ファイルによってはアップロードできずにエラーになってそう
-- [ ] HTML の Inject で Chunk をいれられるようにする
-- [ ] Critical CSS のインライン化
-- [ ] 音声の AAC 化
+- [ ] Critical CSS のインライン化（なんか webfont の方もインライン化された。プラグインが競合？）
 - [ ] 音声の blob 変換削除
-- [ ] バンドルサイズ削減（FontAwesome、Lodash、ProvidePlugin まわり）
-- [ ] WebFont まわりのチェック
-- [ ] 音声ファイルなどの最適化
-- [ ] コードやメディアのファイル形式の選定
+- [ ] バンドルサイズ削減（Lodash、ProvidePlugin まわり）
 - [ ] http1.1 -> http2,3 への移行（spdy、https）
+- [ ] IntersectionObserver, requestAnimationFrame 周りでスクロールの処理間引く
+- [ ] React.memo 足りない場所いろいろありそう
