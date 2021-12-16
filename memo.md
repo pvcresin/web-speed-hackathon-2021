@@ -43,12 +43,12 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 - [x] CSS の lazyload
 - [x] Sourcemap 最適化
 - [x] FontAwesome（svg） 削減
+- [x] Code Splitting（dynamic import）
 
 TODO
 
 - [ ] 画像ファイルによってはアップロードできずにエラーになってそう
 - [ ] HTML の Inject で Chunk をいれられるようにする
-- [ ] Code Splitting（dynamic import）
 - [ ] Critical CSS のインライン化
 - [ ] 音声の AAC 化
 - [ ] 音声の blob 変換削除
