@@ -1,6 +1,7 @@
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
@@ -36,6 +37,7 @@ const config = {
       path.resolve(SRC_PATH, './buildinfo.js'),
       path.resolve(SRC_PATH, './index.jsx'),
     ],
+    webfont: path.resolve(SRC_PATH, './styles/webfont.css'),
   },
   module: {
     rules: [
@@ -55,7 +57,8 @@ const config = {
     ],
   },
   output: {
-    filename: './scripts/[name].js',
+    publicPath: '/',
+    filename: 'scripts/[name].[contenthash].js',
     path: DIST_PATH,
   },
   plugins: [
@@ -69,12 +72,24 @@ const config = {
       NODE_ENV: process.env.NODE_ENV || 'production',
     }),
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].css',
+      filename: 'styles/[name].[contenthash].css',
     }),
     new HtmlWebpackPlugin({
-      inject: false,
+      inject: true,
       // hash: true,
+      scriptLoading: 'defer',
       template: path.resolve(SRC_PATH, './index.html'),
+    }),
+    new PreloadWebpackPlugin({
+      rel: 'preload',
+      // only preload initial chunks
+      include: 'initial',
+      as: (entry) => {
+        if (/\.css$/.test(entry)) return 'style';
+        if (/\.woff$/.test(entry)) return 'font';
+        if (/\.png$/.test(entry)) return 'image';
+        return 'script';
+      },
     }),
   ],
   resolve: {
