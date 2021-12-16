@@ -1,8 +1,10 @@
 const path = require('path');
+const zlib = require('zlib');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const webpack = require('webpack');
 
 const SRC_PATH = path.resolve(__dirname, './src');
@@ -70,6 +72,18 @@ const config = {
       // Heroku では SOURCE_VERSION 環境変数から commit hash を参照できます
       COMMIT_HASH: process.env.SOURCE_VERSION || '',
       NODE_ENV: process.env.NODE_ENV || 'production',
+    }),
+    new CompressionPlugin({
+      test: /\.(js|css)$/,
+      filename: '[path][base].br',
+      algorithm: 'brotliCompress',
+      compressionOptions: {
+        params: {
+          [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
+        },
+      },
+      threshold: 10240,
+      minRatio: 0.8,
     }),
     new MiniCssExtractPlugin({
       filename: 'styles/[name].[contenthash].css',
