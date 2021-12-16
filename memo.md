@@ -61,3 +61,4 @@ TODO
 - [ ] React.memo 足りない場所いろいろありそう
 - [ ] 規約ページは静的に配信できる
 - [ ] SSR の導入
+- [ ] fetchMore で limit, offset 使えてなくて草。全件取得は森
