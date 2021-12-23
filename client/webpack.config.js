@@ -47,7 +47,7 @@ const config = {
       {
         exclude: /node_modules/,
         test: /\.jsx?$/,
-        use: [{ loader: 'babel-loader' }],
+        use: [{ loader: 'babel-loader', options: { cacheDirectory: isDev } }],
       },
       {
         test: /\.css$/i,
