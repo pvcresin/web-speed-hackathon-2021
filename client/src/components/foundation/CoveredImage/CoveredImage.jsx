@@ -12,42 +12,35 @@ import React from 'react';
  * @type {React.VFC<Props>}
  */
 const CoveredImage = React.memo(({ alt, src }) => {
-  const [imageSize, setImageSize] = React.useState(null);
+  /** @type {React.RefObject<HTMLDivElement>} */
+  const containerRef = React.useRef(null);
+  const [type, setType] = React.useState(null);
 
   React.useEffect(() => {
     const img = new Image();
     img.onload = () => {
-      setImageSize({ width: img.width, height: img.height });
+      const container = containerRef.current;
+      const containerH = container?.clientHeight ?? 0;
+      const containerW = container?.clientWidth ?? 0;
+      const containerRatio = containerH / containerW;
+
+      const imgH = img.height;
+      const imgW = img.width;
+      const imageRatio = imgH / imgW;
+
+      setType(containerRatio <= imageRatio ? 'widthFull' : 'heightFull');
     };
     img.src = src;
   }, [src]);
 
-  const [containerSize, setContainerSize] = React.useState({ height: 0, width: 0 });
-  /** @type {React.RefCallback<HTMLDivElement>} */
-  const callbackRef = React.useCallback((el) => {
-    setContainerSize({
-      height: el?.clientHeight ?? 0,
-      width: el?.clientWidth ?? 0,
-    });
-  }, []);
-
-  const containerRatio = containerSize.height / containerSize.width;
-  const imageRatio = imageSize?.height / imageSize?.width;
-
   return (
-    <div
-      ref={callbackRef}
-      className="relative w-full h-full overflow-hidden"
-      style={{
-        backgroundImage: `url(${src})`,
-        backgroundSize: 'cover',
-      }}
-    >
+    <div ref={containerRef} className="relative w-full h-full overflow-hidden">
       <img
         alt={alt}
         className={classNames('absolute left-1/2 top-1/2 max-w-none transform -translate-x-1/2 -translate-y-1/2', {
-          'w-auto h-full': containerRatio > imageRatio,
-          'w-full h-auto': containerRatio <= imageRatio,
+          'opacity-0': type === null,
+          'w-auto h-full': type === 'heightFull',
+          'w-full h-auto': type === 'widthFull',
         })}
         src={src}
         loading="lazy"
