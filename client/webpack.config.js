@@ -17,6 +17,7 @@ const useSpdy = false;
 
 /** @type {import('webpack').Configuration} */
 const config = {
+  mode: process.env.NODE_ENV,
   devServer: {
     historyApiFallback: true,
     https: useSpdy,
