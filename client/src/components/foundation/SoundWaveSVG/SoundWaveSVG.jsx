@@ -60,8 +60,10 @@ const SoundWaveSVG = React.memo(({ soundData }) => {
   const [{ max, peaks }, setPeaks] = React.useState({ max: 0, peaks: [] });
 
   React.useEffect(() => {
-    calculate(soundData).then(({ max, peaks }) => {
-      setPeaks({ max, peaks });
+    window.requestIdleCallback(() => {
+      calculate(soundData).then(({ max, peaks }) => {
+        setPeaks({ max, peaks });
+      });
     });
   }, [soundData]);
 
