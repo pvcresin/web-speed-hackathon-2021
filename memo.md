@@ -30,7 +30,7 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 
 - [x] code-js の polyfill 削減(browserslist, usage)
 - [x] moment to dayjs（L のフォーマットは localize のプラグイン必要だった）
-- [x] lodash の個別 import（Math.max との違いにハマった。VRT で波形表示されてないのに気づけた）
+- [x] lodash の個別 import, 削除（Math.max との違いにハマった。VRT で波形表示されてないのに気づけた,）
 - [x] JS の defer
 - [x] scroll で 2 \*\* 18
 - [x] 画像や音声周りの CLS 対応（AspectRatio など）
