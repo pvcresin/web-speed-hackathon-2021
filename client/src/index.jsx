@@ -11,11 +11,9 @@ import { AppContainer } from './containers/AppContainer';
 
 dayjs.extend(localizedFormat);
 
-window.addEventListener('load', () => {
-  ReactDOM.render(
-    <BrowserRouter>
-      <AppContainer />
-    </BrowserRouter>,
-    document.getElementById('app'),
-  );
-});
+ReactDOM.render(
+  <BrowserRouter>
+    <AppContainer />
+  </BrowserRouter>,
+  document.getElementById('app'),
+);
