@@ -113,6 +113,13 @@ const config = {
       fs: false,
       path: false,
     },
+    alias: isDev
+      ? undefined
+      : {
+          react: 'preact/compat',
+          'react-dom': 'preact/compat',
+          'react/jsx-runtime': 'preact/jsx-runtime',
+        },
   },
 };
 

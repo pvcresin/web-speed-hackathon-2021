@@ -1,3 +1,5 @@
+// import 'preact/debug';
+
 import 'dayjs/locale/ja';
 
 import dayjs from 'dayjs';
