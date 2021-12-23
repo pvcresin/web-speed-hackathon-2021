@@ -42,7 +42,7 @@ async function calculate(data) {
 /**
  * @type {React.VFC<Props>}
  */
-const SoundWaveSVG = ({ soundData }) => {
+const SoundWaveSVG = React.memo(({ soundData }) => {
   const uniqueIdRef = React.useRef(Math.random().toString(16));
   const [{ max, peaks }, setPeaks] = React.useState({ max: 0, peaks: [] });
 
@@ -62,6 +62,6 @@ const SoundWaveSVG = ({ soundData }) => {
       })}
     </svg>
   );
-};
+});
 
 export { SoundWaveSVG };

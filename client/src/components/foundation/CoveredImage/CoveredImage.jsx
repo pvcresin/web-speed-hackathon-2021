@@ -11,7 +11,7 @@ import React from 'react';
  * アスペクト比を維持したまま、要素のコンテンツボックス全体を埋めるように画像を拡大縮小します
  * @type {React.VFC<Props>}
  */
-const CoveredImage = ({ alt, src }) => {
+const CoveredImage = React.memo(({ alt, src }) => {
   const [imageSize, setImageSize] = React.useState(null);
 
   React.useEffect(() => {
@@ -54,6 +54,6 @@ const CoveredImage = ({ alt, src }) => {
       />
     </div>
   );
-};
+});
 
 export { CoveredImage };

@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from '../FontAwesomeIcon';
  * クリックすると再生・一時停止を切り替えます。
  * @type {React.VFC<Props>}
  */
-const PausableMovie = ({ src }) => {
+const PausableMovie = React.memo(({ src }) => {
   /** @type {React.RefObject<HTMLVideoElement>} */
   const animatorRef = React.useRef(null);
 
@@ -64,6 +64,6 @@ const PausableMovie = ({ src }) => {
       </button>
     </AspectRatioBox>
   );
-};
+});
 
 export { PausableMovie };

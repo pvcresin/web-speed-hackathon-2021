@@ -11,7 +11,7 @@ import React from 'react';
  * 親要素の横幅を基準にして、指定したアスペクト比のブロック要素を作ります
  * @type {React.VFC<Props>}
  */
-const AspectRatioBox = ({ aspectHeight, aspectWidth, children }) => {
+const AspectRatioBox = React.memo(({ aspectHeight, aspectWidth, children }) => {
   return (
     <div
       className="relative w-full h-1"
@@ -23,6 +23,6 @@ const AspectRatioBox = ({ aspectHeight, aspectWidth, children }) => {
       <div className="absolute inset-0">{children}</div>
     </div>
   );
-};
+});
 
 export { AspectRatioBox };

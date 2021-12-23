@@ -8,7 +8,7 @@ import React from 'react';
  */
 
 /** @type {React.VFC<Props>} */
-const InfiniteScroll = ({ children, fetchMore, items }) => {
+const InfiniteScroll = React.memo(({ children, fetchMore, items }) => {
   const latestItem = items[items.length - 1];
 
   const prevReachedRef = React.useRef(false);
@@ -46,6 +46,6 @@ const InfiniteScroll = ({ children, fetchMore, items }) => {
   }, [latestItem, fetchMore]);
 
   return <>{children}</>;
-};
+});
 
 export { InfiniteScroll };

@@ -15,7 +15,7 @@ import { SoundWaveSVG } from '../SoundWaveSVG';
 /**
  * @type {React.VFC<Props>}
  */
-const SoundPlayer = ({ sound }) => {
+const SoundPlayer = React.memo(({ sound }) => {
   const src = React.useMemo(() => getSoundPath(sound.id), [sound.id]);
   const { data, isLoading } = useFetch(src, fetchBinary);
 
@@ -70,6 +70,6 @@ const SoundPlayer = ({ sound }) => {
       </div>
     </div>
   );
-};
+});
 
 export { SoundPlayer };

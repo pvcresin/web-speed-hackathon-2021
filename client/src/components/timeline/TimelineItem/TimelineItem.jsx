@@ -32,7 +32,7 @@ const isClickedAnchorOrButton = (target, currentTarget) => {
  */
 
 /** @type {React.VFC<Props>} */
-const TimelineItem = ({ post }) => {
+const TimelineItem = React.memo(({ post }) => {
   const navigate = useNavigate();
 
   /**
@@ -95,6 +95,6 @@ const TimelineItem = ({ post }) => {
       </div>
     </article>
   );
-};
+});
 
 export { TimelineItem };
