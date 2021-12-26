@@ -4,14 +4,10 @@ import { AuthModalPage } from '../../components/auth_modal/AuthModalPage';
 import { Modal } from '../../components/modal/Modal';
 import { sendJSON } from '../../utils/fetchers';
 
-/**
- * @typedef {object} Props
- * @property {() => void} onRequestCloseModal
- * @property {(user: Models.User) => void} onUpdateActiveUser
- */
-
-/** @type {React.VFC<Props>} */
-const AuthModalContainer = ({ onRequestCloseModal, onUpdateActiveUser }) => {
+const AuthModalContainer: React.VFC<{
+  onRequestCloseModal: () => void;
+  onUpdateActiveUser: (user: Models.User | null) => void;
+}> = ({ onRequestCloseModal, onUpdateActiveUser }) => {
   const [hasError, setHasError] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
@@ -24,10 +20,10 @@ const AuthModalContainer = ({ onRequestCloseModal, onUpdateActiveUser }) => {
       try {
         setIsLoading(true);
         if (type === 'signin') {
-          const user = await sendJSON('/api/v1/signin', params);
+          const user = await sendJSON<Models.User>('/api/v1/signin', params);
           onUpdateActiveUser(user);
         } else if (type === 'signup') {
-          const user = await sendJSON('/api/v1/signup', params);
+          const user = await sendJSON<Models.User>('/api/v1/signup', params);
           onUpdateActiveUser(user);
         }
         onRequestCloseModal();

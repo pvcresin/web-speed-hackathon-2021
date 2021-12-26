@@ -14,10 +14,11 @@ const TermContainer = React.lazy(() => import(/* webpackPrefetch: true */ '../Te
 const TimelineContainer = React.lazy(() => import(/* webpackPrefetch: true */ '../TimelineContainer'));
 const UserProfileContainer = React.lazy(() => import(/* webpackPrefetch: true */ '../UserProfileContainer'));
 
-const Loadable = ({ children }) => <React.Suspense fallback={null}>{children}</React.Suspense>;
+const Loadable: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <React.Suspense fallback={null}>{children}</React.Suspense>
+);
 
-/** @type {React.VFC} */
-const AppContainer = () => {
+const AppContainer: React.VFC = () => {
   const { pathname } = useLocation();
   React.useEffect(() => {
     window.scrollTo(0, 0);

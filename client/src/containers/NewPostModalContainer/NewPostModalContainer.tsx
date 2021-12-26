@@ -24,13 +24,7 @@ async function sendNewPost({ images, movie, sound, text }) {
   return sendJSON('/api/v1/posts', payload);
 }
 
-/**
- * @typedef {object} Props
- * @property {() => void} onRequestCloseModal
- */
-
-/** @type {React.VFC<Props>} */
-const NewPostModalContainer = ({ onRequestCloseModal }) => {
+const NewPostModalContainer: React.VFC<{ onRequestCloseModal: () => void }> = ({ onRequestCloseModal }) => {
   const navigate = useNavigate();
 
   const [hasError, setHasError] = React.useState(false);

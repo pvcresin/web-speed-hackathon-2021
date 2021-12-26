@@ -8,8 +8,7 @@ import { useInfiniteFetch } from '../../hooks/use_infinite_fetch';
 import { fetchJSON } from '../../utils/fetchers';
 import { NotFoundContainer } from '../NotFoundContainer';
 
-/** @type {React.VFC} */
-const PostContainer = () => {
+const PostContainer: React.VFC = () => {
   const { postId } = useParams();
 
   const { data: post, isLoading: isLoadingPost } = useFetch(`/api/v1/posts/${postId}`, fetchJSON);

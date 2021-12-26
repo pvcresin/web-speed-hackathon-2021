@@ -1,11 +1,6 @@
 import { gzipSync } from 'fflate';
 
-/**
- * @template T
- * @param {string} url
- * @returns {Promise<T>}
- */
-async function fetchJSON(url) {
+async function fetchJSON(url: string) {
   const result = await fetch(url)
     .then((res) => {
       if (!res.ok) return null;
@@ -15,13 +10,7 @@ async function fetchJSON(url) {
   return result;
 }
 
-/**
- * @template T
- * @param {string} url
- * @param {File} file
- * @returns {Promise<T>}
- */
-async function sendFile(url, file) {
+async function sendFile(url: string, file: File) {
   const result = await fetch(url, {
     headers: {
       'Content-Type': 'application/octet-stream',
@@ -37,13 +26,7 @@ async function sendFile(url, file) {
   return result;
 }
 
-/**
- * @template T
- * @param {string} url
- * @param {object} data
- * @returns {Promise<T>}
- */
-async function sendJSON(url, data) {
+async function sendJSON<T>(url: string, data: object) {
   const jsonString = JSON.stringify(data);
   const uint8Array = new TextEncoder().encode(jsonString);
   const compressed = gzipSync(uint8Array);
@@ -58,7 +41,7 @@ async function sendJSON(url, data) {
   })
     .then((res) => {
       if (!res.ok) return null;
-      return res.json();
+      return res.json() as unknown as T;
     })
     .catch(() => null);
   return result;

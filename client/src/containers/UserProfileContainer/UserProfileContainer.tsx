@@ -8,8 +8,7 @@ import { useInfiniteFetch } from '../../hooks/use_infinite_fetch';
 import { fetchJSON } from '../../utils/fetchers';
 import { NotFoundContainer } from '../NotFoundContainer';
 
-/** @type {React.VFC} */
-const UserProfileContainer = () => {
+const UserProfileContainer: React.VFC = () => {
   const { username } = useParams();
 
   const { data: user, isLoading: isLoadingUser } = useFetch(`/api/v1/users/${username}`, fetchJSON);

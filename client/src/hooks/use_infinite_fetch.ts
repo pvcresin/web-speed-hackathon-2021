@@ -2,25 +2,17 @@ import React from 'react';
 
 const LIMIT = 5;
 
-/**
- * @template T
- * @typedef {object} ReturnValues
- * @property {Array<T>} data
- * @property {Error | null} error
- * @property {boolean} isLoading
- * @property {() => Promise<void>} fetchMore
- */
+type ReturnValues<T> = {
+  data: Array<T>;
+  error: Error | null;
+  isLoading: boolean;
+  fetchMore?: () => void;
+};
 
-/**
- * @template T
- * @param {string} apiPath
- * @param {(apiPath: string) => Promise<T[]>} fetcher
- * @returns {ReturnValues<T>}
- */
-export function useInfiniteFetch(apiPath, fetcher) {
+export function useInfiniteFetch<T>(apiPath: string, fetcher: (apiPath: string) => Promise<T[]>): ReturnValues<T> {
   const internalRef = React.useRef({ isLoading: false, offset: 0 });
 
-  const [result, setResult] = React.useState({
+  const [result, setResult] = React.useState<ReturnValues<T>>({
     data: [],
     error: null,
     isLoading: true,

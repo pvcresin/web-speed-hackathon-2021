@@ -1,3 +1,5 @@
+declare module '*.css';
+
 declare namespace Models {
   interface User {
     createdAt: string;

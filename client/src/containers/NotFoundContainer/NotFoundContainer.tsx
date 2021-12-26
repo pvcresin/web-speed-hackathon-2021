@@ -2,8 +2,7 @@ import React from 'react';
 
 import { NotFoundPage } from '../../components/application/NotFoundPage';
 
-/** @type {React.VFC} */
-const NotFoundContainer = () => {
+const NotFoundContainer: React.VFC = () => {
   React.useEffect(() => {
     document.title = 'ページが見つかりません - CAwitter';
   }, []);
