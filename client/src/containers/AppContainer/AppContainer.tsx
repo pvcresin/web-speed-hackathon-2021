@@ -20,12 +20,13 @@ const Loadable: React.FC<{ children: React.ReactNode }> = ({ children }) => (
 
 const AppContainer: React.VFC = () => {
   const { pathname } = useLocation();
+
   React.useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const [activeUser, setActiveUser] = React.useState(null);
-  const { data, isLoading } = useFetch('/api/v1/me', fetchJSON);
+  const [activeUser, setActiveUser] = React.useState<Models.User | null>(null);
+  const { data, isLoading } = useFetch<Models.User | null>('/api/v1/me', fetchJSON);
   React.useEffect(() => {
     setActiveUser(data);
   }, [data]);

@@ -11,9 +11,9 @@ import { NotFoundContainer } from '../NotFoundContainer';
 const PostContainer: React.VFC = () => {
   const { postId } = useParams();
 
-  const { data: post, isLoading: isLoadingPost } = useFetch(`/api/v1/posts/${postId}`, fetchJSON);
+  const { data: post, isLoading: isLoadingPost } = useFetch<Models.Post>(`/api/v1/posts/${postId}`, fetchJSON);
 
-  const { data: comments, fetchMore } = useInfiniteFetch(`/api/v1/posts/${postId}/comments`, fetchJSON);
+  const { data: comments, fetchMore } = useInfiniteFetch<Models.Comment>(`/api/v1/posts/${postId}/comments`, fetchJSON);
 
   React.useEffect(() => {
     if (isLoadingPost) {

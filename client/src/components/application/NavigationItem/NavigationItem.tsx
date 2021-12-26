@@ -2,16 +2,12 @@ import classNames from 'classnames';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-/**
- * @typedef {object} Props
- * @property {React.ReactNode} icon
- * @property {string} text
- * @property {string} [href]
- * @property {() => void} [onClick]
- */
-
-/** @type {React.VFC<Props>} */
-const NavigationItem = ({ href, icon, onClick, text }) => {
+const NavigationItem: React.VFC<{
+  href?: string;
+  icon: React.ReactNode;
+  onClick?: () => void;
+  text: string;
+}> = ({ href, icon, onClick, text }) => {
   return (
     <li>
       {href !== undefined ? (

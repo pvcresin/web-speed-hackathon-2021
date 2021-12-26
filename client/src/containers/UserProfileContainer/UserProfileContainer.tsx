@@ -11,8 +11,8 @@ import { NotFoundContainer } from '../NotFoundContainer';
 const UserProfileContainer: React.VFC = () => {
   const { username } = useParams();
 
-  const { data: user, isLoading: isLoadingUser } = useFetch(`/api/v1/users/${username}`, fetchJSON);
-  const { data: posts, fetchMore } = useInfiniteFetch(`/api/v1/users/${username}/posts`, fetchJSON);
+  const { data: user, isLoading: isLoadingUser } = useFetch<Models.User>(`/api/v1/users/${username}`, fetchJSON);
+  const { data: posts, fetchMore } = useInfiniteFetch<Models.Post>(`/api/v1/users/${username}/posts`, fetchJSON);
 
   React.useEffect(() => {
     if (isLoadingUser) {

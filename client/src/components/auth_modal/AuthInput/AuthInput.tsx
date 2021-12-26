@@ -1,15 +1,11 @@
 import React from 'react';
 
-/**
- * @typedef {object} Props
- * @property {string} [autoComplete]
- * @property {string} label
- * @property {React.ChangeEventHandler<HTMLInputElement>} onChange
- * @property {string} type
- */
-
-/** @type {React.VFC<Props>} */
-const AuthInput = ({ autoComplete, label, onChange, type }) => {
+const AuthInput: React.VFC<{
+  autoComplete?: string;
+  label: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  type: string;
+}> = ({ autoComplete, label, onChange, type }) => {
   return (
     <label className="block">
       <p>{label}</p>

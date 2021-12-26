@@ -6,7 +6,7 @@ type ReturnValues<T> = {
   isLoading: boolean;
 };
 
-export function useFetch<T>(apiPath: string, fetcher: (apiPath: string) => Promise<T>): ReturnValues<T> {
+export function useFetch<T>(apiPath: string, fetcher: (apiPath: string) => Promise<T | null>): ReturnValues<T> {
   const [result, setResult] = React.useState<ReturnValues<T>>({
     data: null,
     error: null,

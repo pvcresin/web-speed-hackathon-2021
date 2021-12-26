@@ -1,16 +1,12 @@
 import classNames from 'classnames';
 import React from 'react';
 
-/**
- * @typedef {object} Props
- * @property {string} accept
- * @property {boolean} active
- * @property {React.ReactNode} icon
- * @property {React.ChangeEventHandler<HTMLInputElement>} onChange
- */
-
-/** @type {React.VFC<Props>} */
-const AttachFileInputButton = ({ accept, active, icon, onChange }) => {
+const AttachFileInputButton: React.VFC<{
+  accept: string;
+  active: boolean;
+  icon: React.ReactNode;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+}> = ({ accept, active, icon, onChange }) => {
   return (
     <label className="relative flex items-center justify-center focus-within:outline-black cursor-pointer">
       <span

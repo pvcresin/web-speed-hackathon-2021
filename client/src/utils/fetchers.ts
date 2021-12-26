@@ -1,10 +1,10 @@
 import { gzipSync } from 'fflate';
 
-async function fetchJSON(url: string) {
+async function fetchJSON<T>(url: string) {
   const result = await fetch(url)
     .then((res) => {
       if (!res.ok) return null;
-      return res.json();
+      return res.json() as unknown as T;
     })
     .catch(() => null);
   return result;

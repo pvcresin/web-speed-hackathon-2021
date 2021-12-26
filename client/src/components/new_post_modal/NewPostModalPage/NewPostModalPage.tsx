@@ -7,31 +7,29 @@ import { AttachFileInputButton } from '../AttachFileInputButton';
 
 const MAX_UPLOAD_BYTES_LIMIT = 10 * 1024 * 1024;
 
-/**
- * @typedef {object} SubmitParams
- * @property {Array<File>} images
- * @property {File | undefined} movie
- * @property {File | undefined} sound
- * @property {string} text
- */
+type SubmitParams = {
+  images: Array<File>;
+  movie: File | undefined;
+  sound: File | undefined;
+  text: string;
+};
 
-/**
- * @typedef {object} Props
- * @property {boolean} hasError
- * @property {boolean} isLoading
- * @property {() => void} onResetError
- * @property {(params: SubmitParams) => void} onSubmit
- */
-
-/** @type {React.VFC<Props>} */
-const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
-  /** @type {[SubmitParams, (params: SubmitParams) => SubmitParams]} */
-  const [params, setParams] = React.useState({ images: [], movie: undefined, sound: undefined, text: '' });
+const NewPostModalPage: React.VFC<{
+  hasError: boolean;
+  isLoading: boolean;
+  onResetError: () => void;
+  onSubmit: (params: SubmitParams) => void;
+}> = ({ hasError, isLoading, onResetError, onSubmit }) => {
+  const [params, setParams] = React.useState<SubmitParams>({
+    images: [],
+    movie: undefined,
+    sound: undefined,
+    text: '',
+  });
 
   const [hasFileError, setHasFileError] = React.useState(false);
 
-  /** @type {React.ChangeEventHandler<HTMLInputElement>} */
-  const handleChangeText = React.useCallback((ev) => {
+  const handleChangeText: React.ChangeEventHandler<HTMLTextAreaElement> = React.useCallback((ev) => {
     const value = ev.currentTarget.value;
     setParams((params) => ({
       ...params,
@@ -39,9 +37,8 @@ const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
     }));
   }, []);
 
-  /** @type {React.ChangeEventHandler<HTMLInputElement>} */
-  const handleChangeImages = React.useCallback((ev) => {
-    const files = Array.from(ev.currentTarget.files).slice(0, 4);
+  const handleChangeImages: React.ChangeEventHandler<HTMLInputElement> = React.useCallback((ev) => {
+    const files = Array.from(ev.currentTarget.files ?? []).slice(0, 4);
     const isValid = files.every((file) => file.size <= MAX_UPLOAD_BYTES_LIMIT);
 
     setHasFileError(isValid !== true);
@@ -55,9 +52,9 @@ const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
     }
   }, []);
 
-  /** @type {React.ChangeEventHandler<HTMLInputElement>} */
-  const handleChangeSound = React.useCallback((ev) => {
-    const file = ev.currentTarget.files[0];
+  const handleChangeSound: React.ChangeEventHandler<HTMLInputElement> = React.useCallback((ev) => {
+    const file = ev.currentTarget.files?.[0];
+    if (!file) return;
     const isValid = file?.size <= MAX_UPLOAD_BYTES_LIMIT;
 
     setHasFileError(isValid !== true);
@@ -71,9 +68,9 @@ const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
     }
   }, []);
 
-  /** @type {React.ChangeEventHandler<HTMLInputElement>} */
-  const handleChangeMovie = React.useCallback((ev) => {
-    const file = ev.currentTarget.files[0];
+  const handleChangeMovie: React.ChangeEventHandler<HTMLInputElement> = React.useCallback((ev) => {
+    const file = ev.currentTarget.files?.[0];
+    if (!file) return;
     const isValid = file?.size <= MAX_UPLOAD_BYTES_LIMIT;
 
     setHasFileError(isValid !== true);
@@ -87,8 +84,7 @@ const NewPostModalPage = ({ hasError, isLoading, onResetError, onSubmit }) => {
     }
   }, []);
 
-  /** @type {React.FormEventHandler<HTMLFormElement>} */
-  const handleSubmit = React.useCallback(
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = React.useCallback(
     (ev) => {
       ev.preventDefault();
       onResetError();

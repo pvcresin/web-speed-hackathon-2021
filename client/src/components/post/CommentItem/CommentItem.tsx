@@ -4,13 +4,7 @@ import { Link } from 'react-router-dom';
 
 import { getProfileImagePath } from '../../../utils/get_path';
 
-/**
- * @typedef {object} Props
- * @property {Models.Comment} comment
- */
-
-/** @type {React.VFC<Props>} */
-const CommentItem = ({ comment }) => {
+const CommentItem: React.VFC<{ comment: Models.Comment }> = ({ comment }) => {
   return (
     <article className="px-1 hover:bg-gray-50 sm:px-4">
       <div className="flex pb-4 pt-2 px-2 border-b border-gray-300 sm:px-4">

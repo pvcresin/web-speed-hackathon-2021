@@ -2,19 +2,11 @@ import classNames from 'classnames';
 import React from 'react';
 
 /**
- * @typedef {object} Props
- * @property {string} alt
- * @property {string} src
- */
-
-/**
  * アスペクト比を維持したまま、要素のコンテンツボックス全体を埋めるように画像を拡大縮小します
- * @type {React.VFC<Props>}
  */
-const CoveredImage = React.memo(({ alt, src }) => {
-  /** @type {React.RefObject<HTMLDivElement>} */
-  const containerRef = React.useRef(null);
-  const [type, setType] = React.useState(null);
+const CoveredImage: React.VFC<{ alt: string; src: string }> = React.memo(({ alt, src }) => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [type, setType] = React.useState<'widthFull' | 'heightFull' | null>(null);
 
   React.useEffect(() => {
     const img = new Image();

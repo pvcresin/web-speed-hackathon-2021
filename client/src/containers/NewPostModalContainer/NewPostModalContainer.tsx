@@ -5,15 +5,14 @@ import { Modal } from '../../components/modal/Modal';
 import { NewPostModalPage } from '../../components/new_post_modal/NewPostModalPage';
 import { sendFile, sendJSON } from '../../utils/fetchers';
 
-/**
- * @param {object} params
- * @param {Array<File>} [params.images]
- * @param {File} [params.movie]
- * @param {File} [params.sound]
- * @param {string} params.text
- * @returns {Promise<Models.Post>}
- */
-async function sendNewPost({ images, movie, sound, text }) {
+type Params = {
+  images: Array<File>;
+  movie: File;
+  sound: File;
+  text: string;
+};
+
+async function sendNewPost({ images, movie, sound, text }: Params) {
   const payload = {
     images: images ? await Promise.all(images.map((image) => sendFile('/api/v1/images', image))) : [],
     movie: movie ? await sendFile('/api/v1/movies', movie) : undefined,
@@ -21,7 +20,7 @@ async function sendNewPost({ images, movie, sound, text }) {
     text,
   };
 
-  return sendJSON('/api/v1/posts', payload);
+  return sendJSON<Models.Post>('/api/v1/posts', payload);
 }
 
 const NewPostModalContainer: React.VFC<{ onRequestCloseModal: () => void }> = ({ onRequestCloseModal }) => {
@@ -39,6 +38,7 @@ const NewPostModalContainer: React.VFC<{ onRequestCloseModal: () => void }> = ({
       try {
         setIsLoading(true);
         const post = await sendNewPost(params);
+        if (post === null) return;
         onRequestCloseModal();
         navigate(`/posts/${post.id}`);
       } catch (_err) {

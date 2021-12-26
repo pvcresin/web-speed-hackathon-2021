@@ -39,7 +39,7 @@ const config = {
     main: [
       path.resolve(SRC_PATH, './index.css'),
       path.resolve(SRC_PATH, './buildinfo.js'),
-      path.resolve(SRC_PATH, './index.jsx'),
+      path.resolve(SRC_PATH, './index.tsx'),
     ],
     webfont: path.resolve(SRC_PATH, './styles/webfont.css'),
   },

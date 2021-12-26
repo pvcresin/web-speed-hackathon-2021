@@ -5,26 +5,18 @@ import { AspectRatioBox } from '../AspectRatioBox';
 import { FontAwesomeIcon } from '../FontAwesomeIcon';
 import { SoundWaveSVG } from '../SoundWaveSVG';
 
-/**
- * @typedef {object} Props
- * @property {Models.Sound} sound
- */
-
-/**
- * @type {React.VFC<Props>}
- */
-const SoundPlayer = React.memo(({ sound }) => {
+const SoundPlayer: React.VFC<{
+  sound: Models.Sound;
+}> = React.memo(({ sound }) => {
   const src = React.useMemo(() => getSoundPath(sound.id), [sound.id]);
 
   const [currentTimeRatio, setCurrentTimeRatio] = React.useState(0);
-  /** @type {React.ReactEventHandler<HTMLAudioElement>} */
-  const handleTimeUpdate = React.useCallback((ev) => {
+  const handleTimeUpdate: React.ReactEventHandler<HTMLAudioElement> = React.useCallback((ev) => {
     const el = ev.currentTarget;
     setCurrentTimeRatio(el.currentTime / el.duration);
   }, []);
 
-  /** @type {React.RefObject<HTMLAudioElement>} */
-  const audioRef = React.useRef(null);
+  const audioRef = React.useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
   const handleTogglePlaying = React.useCallback(() => {
     setIsPlaying((isPlaying) => {

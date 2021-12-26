@@ -6,10 +6,12 @@ type ReturnValues<T> = {
   data: Array<T>;
   error: Error | null;
   isLoading: boolean;
-  fetchMore?: () => void;
 };
 
-export function useInfiniteFetch<T>(apiPath: string, fetcher: (apiPath: string) => Promise<T[]>): ReturnValues<T> {
+export function useInfiniteFetch<T>(
+  apiPath: string,
+  fetcher: (apiPath: string) => Promise<T[] | null>,
+): ReturnValues<T> & { fetchMore: () => void } {
   const internalRef = React.useRef({ isLoading: false, offset: 0 });
 
   const [result, setResult] = React.useState<ReturnValues<T>>({
@@ -37,6 +39,7 @@ export function useInfiniteFetch<T>(apiPath: string, fetcher: (apiPath: string) 
     const promise = fetcher(url);
 
     promise.then((nextData) => {
+      if (!nextData) return;
       setResult((cur) => ({
         ...cur,
         data: [...cur.data, ...nextData],

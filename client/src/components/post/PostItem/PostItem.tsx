@@ -7,13 +7,7 @@ import { ImageArea } from '../../post/ImageArea';
 import { MovieArea } from '../../post/MovieArea';
 import { SoundArea } from '../../post/SoundArea';
 
-/**
- * @typedef {object} Props
- * @property {Models.Post} post
- */
-
-/** @type {React.VFC<Props>} */
-const PostItem = ({ post }) => {
+const PostItem: React.VFC<{ post: Models.Post }> = ({ post }) => {
   return (
     <article className="px-1 sm:px-4">
       <div className="pb-4 pt-4 px-4 border-b border-gray-300">

@@ -5,17 +5,10 @@ import { AspectRatioBox } from '../AspectRatioBox';
 import { FontAwesomeIcon } from '../FontAwesomeIcon';
 
 /**
- * @typedef {object} Props
- * @property {string} src
- */
-
-/**
  * クリックすると再生・一時停止を切り替えます。
- * @type {React.VFC<Props>}
  */
-const PausableMovie = React.memo(({ src }) => {
-  /** @type {React.RefObject<HTMLVideoElement>} */
-  const animatorRef = React.useRef(null);
+const PausableMovie: React.VFC<{ src: string }> = React.memo(({ src }) => {
+  const animatorRef = React.useRef<HTMLVideoElement>(null);
 
   const defaultIsPlaying = React.useMemo(() => {
     const disableAutoPlay = Boolean(window.matchMedia('(prefers-reduced-motion: reduce)').matches);

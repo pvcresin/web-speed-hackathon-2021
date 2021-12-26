@@ -2,13 +2,7 @@ import React from 'react';
 
 import { CommentItem } from '../CommentItem';
 
-/**
- * @typedef {object} Props
- * @property {Array<Models.Comment>} comments
- */
-
-/** @type {React.VFC<Props>} */
-const CommentList = ({ comments }) => {
+const CommentList: React.VFC<{ comments: Array<Models.Comment> }> = ({ comments }) => {
   return (
     <div>
       {comments.map((comment) => {

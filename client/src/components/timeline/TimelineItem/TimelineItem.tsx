@@ -7,12 +7,7 @@ import { ImageArea } from '../../post/ImageArea';
 import { MovieArea } from '../../post/MovieArea';
 import { SoundArea } from '../../post/SoundArea';
 
-/**
- * @param {Element} target
- * @param {Element} currentTarget
- * @returns {boolean}
- */
-const isClickedAnchorOrButton = (target, currentTarget) => {
+const isClickedAnchorOrButton = (target: Element, currentTarget: Element) => {
   while (target !== null) {
     const tagName = target.tagName.toLowerCase();
     if (['button', 'a'].includes(tagName)) {
@@ -21,27 +16,25 @@ const isClickedAnchorOrButton = (target, currentTarget) => {
     if (currentTarget === target) {
       return false;
     }
+    // @ts-expect-error 型 'null' を型 'Element' に割り当てることはできません。ts(2322)
     target = target.parentNode;
   }
   return false;
 };
 
-/**
- * @typedef {object} Props
- * @property {Models.Post} post
- */
-
-/** @type {React.VFC<Props>} */
-const TimelineItem = React.memo(({ post }) => {
+const TimelineItem: React.VFC<{ post: Models.Post }> = React.memo(({ post }) => {
   const navigate = useNavigate();
 
   /**
    * ボタンやリンク以外の箇所をクリックしたとき かつ 文字が選択されてないとき、投稿詳細ページに遷移する
-   * @type {React.MouseEventHandler}
    */
-  const handleClick = React.useCallback(
+  const handleClick: React.MouseEventHandler = React.useCallback(
     (ev) => {
-      const isSelectedText = document.getSelection().isCollapsed === false;
+      const selection = document.getSelection();
+      if (!selection) return;
+
+      const isSelectedText = selection.isCollapsed === false;
+      // @ts-expect-error 型 'EventTarget' の引数を型 'Element' のパラメーターに割り当てることはできません。
       if (!isClickedAnchorOrButton(ev.target, ev.currentTarget) && !isSelectedText) {
         navigate(`/posts/${post.id}`);
       }

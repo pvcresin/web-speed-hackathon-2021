@@ -1,14 +1,10 @@
 import React from 'react';
 
-/**
- * @typedef {object} Props
- * @property {React.ReactNode} children
- * @property {any} items
- * @property {() => void} fetchMore
- */
-
-/** @type {React.VFC<Props>} */
-const InfiniteScroll = React.memo(({ children, fetchMore, items }) => {
+const InfiniteScroll: React.VFC<{
+  children: React.ReactNode;
+  fetchMore: () => void;
+  items: unknown[];
+}> = React.memo(({ children, fetchMore, items }) => {
   const latestItem = items[items.length - 1];
 
   const prevReachedRef = React.useRef(false);
