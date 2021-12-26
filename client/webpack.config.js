@@ -46,8 +46,8 @@ const config = {
     rules: [
       {
         exclude: /node_modules/,
-        test: /\.jsx?$/,
-        use: [{ loader: 'babel-loader', options: { cacheDirectory: isDev } }],
+        test: /\.(js|jsx|ts|tsx)$/,
+        use: [{ loader: 'esbuild-loader', options: { loader: 'jsx', target: 'es2015' } }],
       },
       {
         test: /\.css$/i,
