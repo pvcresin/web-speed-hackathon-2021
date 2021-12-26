@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PreloadWebpackPlugin = require('@vue/preload-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const webpack = require('webpack');
 
 const SRC_PATH = path.resolve(__dirname, './src');
@@ -47,7 +48,7 @@ const config = {
       {
         exclude: /node_modules/,
         test: /\.(js|jsx|ts|tsx)$/,
-        use: [{ loader: 'esbuild-loader', options: { loader: 'jsx', target: 'es2015' } }],
+        use: [{ loader: 'esbuild-loader', options: { loader: 'tsx', target: 'es2020' } }],
       },
       {
         test: /\.css$/i,
@@ -106,9 +107,10 @@ const config = {
         return 'script';
       },
     }),
+    ...(isDev ? [new ForkTsCheckerWebpackPlugin()] : []),
   ],
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     fallback: {
       fs: false,
       path: false,
