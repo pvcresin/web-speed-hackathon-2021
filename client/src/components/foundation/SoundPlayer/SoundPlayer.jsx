@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { useFetch } from '../../../hooks/use_fetch';
-import { fetchBinary } from '../../../utils/fetchers';
 import { getSoundPath } from '../../../utils/get_path';
 import { AspectRatioBox } from '../AspectRatioBox';
 import { FontAwesomeIcon } from '../FontAwesomeIcon';
@@ -17,7 +15,6 @@ import { SoundWaveSVG } from '../SoundWaveSVG';
  */
 const SoundPlayer = React.memo(({ sound }) => {
   const src = React.useMemo(() => getSoundPath(sound.id), [sound.id]);
-  const { data, isLoading } = useFetch(src, fetchBinary);
 
   const [currentTimeRatio, setCurrentTimeRatio] = React.useState(0);
   /** @type {React.ReactEventHandler<HTMLAudioElement>} */
@@ -48,7 +45,6 @@ const SoundPlayer = React.memo(({ sound }) => {
           className="flex items-center justify-center w-8 h-8 text-white text-sm bg-blue-600 rounded-full hover:opacity-75"
           onClick={handleTogglePlaying}
           type="button"
-          disabled={isLoading}
         >
           <FontAwesomeIcon iconType={isPlaying ? 'pause' : 'play'} styleType="solid" />
         </button>
@@ -59,11 +55,13 @@ const SoundPlayer = React.memo(({ sound }) => {
         <div className="pt-2">
           <AspectRatioBox aspectHeight={1} aspectWidth={10}>
             <div className="relative w-full h-full">
-              <div className="absolute inset-0 w-full h-full">{data !== null && <SoundWaveSVG soundData={data} />}</div>
+              <div className="absolute inset-0 w-full h-full">
+                <SoundWaveSVG soundId={sound.id} />
+              </div>
               <div
                 className="absolute inset-0 w-full h-full bg-gray-300 opacity-75"
                 style={{ left: `${currentTimeRatio * 100}%` }}
-              ></div>
+              />
             </div>
           </AspectRatioBox>
         </div>

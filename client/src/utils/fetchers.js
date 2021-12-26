@@ -1,20 +1,6 @@
 import { gzipSync } from 'fflate';
 
 /**
- * @param {string} url
- * @returns {Promise<ArrayBuffer>}
- */
-async function fetchBinary(url) {
-  const result = await fetch(url)
-    .then((res) => {
-      if (!res.ok) return null;
-      return res.arrayBuffer();
-    })
-    .catch(() => null);
-  return result;
-}
-
-/**
  * @template T
  * @param {string} url
  * @returns {Promise<T>}
@@ -78,4 +64,4 @@ async function sendJSON(url, data) {
   return result;
 }
 
-export { fetchBinary, fetchJSON, sendFile, sendJSON };
+export { fetchJSON, sendFile, sendJSON };
