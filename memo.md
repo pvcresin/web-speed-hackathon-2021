@@ -49,16 +49,18 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 - [x] JS/CSS を brotli で配信（Prefetch 分は未対応）
 - [x] Inject で Chunk をいれられるようにする JS を Prefetch した
 - [x] Cache-Control: max-age を伸ばす + contenthash つけた
+- [x] fetchMore で limit, offset 使えてなくて草。全件取得は森
+- [x] React.memo 足りない場所いろいろありそう
+- [x] 音声の blob 変換削除・事前 SVG 構築
 
 TODO
 
 - [ ] 画像ファイルによってはアップロードできずにエラーになってそう
+- [ ] client の preset-env いらなくね疑惑
+- [ ] Mp3 ファイルがでかすぎる事前準備ファイルの Meta データとか消しても良さそう
 - [ ] Critical CSS のインライン化（なんか webfont の方もインライン化された。プラグインが競合？）
-- [ ] 音声の blob 変換削除
-- [ ] バンドルサイズ削減（Lodash、ProvidePlugin まわり）
+- [ ] バンドルサイズ削減（ProvidePlugin まわり）
 - [ ] http1.1 -> http2,3 への移行（spdy、https）
 - [ ] IntersectionObserver, requestAnimationFrame 周りでスクロールの処理間引く
-- [ ] React.memo 足りない場所いろいろありそう
 - [ ] 規約ページは静的に配信できる
 - [ ] SSR の導入
-- [ ] fetchMore で limit, offset 使えてなくて草。全件取得は森
