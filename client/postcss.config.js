@@ -6,7 +6,7 @@ module.exports = {
   plugins: [
     postcssImport(),
     tailwindcss({
-      purge: ['./src/**/*.jsx'],
+      purge: ['./src/**/*.ts', './src/**/*.tsx'],
     }),
     cssnano({
       preset: 'default',
