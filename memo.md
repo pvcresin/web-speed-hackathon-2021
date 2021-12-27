@@ -57,10 +57,11 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 TODO
 
 - [ ] 画像ファイルによってはアップロードできずにエラーになってそう
+- [ ] babel-node やめる（メモリを食うらしい Abema 記事参照）
 - [ ] Mp3 ファイルがでかすぎる事前準備ファイルの Meta データとか消しても良さそう
 - [ ] Critical CSS のインライン化（なんか webfont の方もインライン化された。プラグインが競合？）
 - [ ] バンドルサイズ削減（ProvidePlugin まわり）
-- [ ] http1.1 -> http2,3 への移行（spdy、https）
+- [ ] Google App Engine など。http1.1 -> http2,3 への移行（spdy、https）
 - [ ] IntersectionObserver, requestAnimationFrame 周りでスクロールの処理間引く
 - [ ] 規約ページは静的に配信できる
-- [ ] SSR の導入
+- [ ] SSR の導入（Next.js に載せ替える）Loadable-Components に載せ替えが必要
