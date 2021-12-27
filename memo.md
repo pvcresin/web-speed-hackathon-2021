@@ -53,6 +53,7 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 - [x] React.memo 足りない場所いろいろありそう
 - [x] 音声の blob 変換削除・事前 SVG 構築
 - [x] client の preset-env いらなくね疑惑
+- [x] dynamic import Loadable-Components に載せ替え
 
 TODO
 
@@ -64,4 +65,4 @@ TODO
 - [ ] Google App Engine など。http1.1 -> http2,3 への移行（spdy、https）
 - [ ] IntersectionObserver, requestAnimationFrame 周りでスクロールの処理間引く
 - [ ] 規約ページは静的に配信できる
-- [ ] SSR の導入（Next.js に載せ替える）Loadable-Components に載せ替えが必要
+- [ ] SSR の導入（Next.js に載せ替える）
