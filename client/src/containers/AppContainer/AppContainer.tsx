@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
+import loadable from '@loadable/component';
 
 import { AppPage } from '../../components/application/AppPage';
 import { useFetch } from '../../hooks/use_fetch';
@@ -7,15 +8,23 @@ import { fetchJSON } from '../../utils/fetchers';
 
 import { NotFoundContainer } from '../NotFoundContainer';
 
-const AuthModalContainer = React.lazy(() => import(/* webpackPrefetch: true */ '../AuthModalContainer'));
-const NewPostModalContainer = React.lazy(() => import(/* webpackPrefetch: true */ '../NewPostModalContainer'));
-const PostContainer = React.lazy(() => import(/* webpackPrefetch: true */ '../PostContainer'));
-const TermContainer = React.lazy(() => import(/* webpackPrefetch: true */ '../TermContainer'));
-const TimelineContainer = React.lazy(() => import(/* webpackPrefetch: true */ '../TimelineContainer'));
-const UserProfileContainer = React.lazy(() => import(/* webpackPrefetch: true */ '../UserProfileContainer'));
-
-const Loadable: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <React.Suspense fallback={null}>{children}</React.Suspense>
+const AuthModalContainer = loadable(
+  () => import(/* webpackPrefetch: true, webpackChunkName: "AuthModalContainer" */ '../AuthModalContainer'),
+);
+const NewPostModalContainer = loadable(
+  () => import(/* webpackPrefetch: true, webpackChunkName: "NewPostModalContainer" */ '../NewPostModalContainer'),
+);
+const PostContainer = loadable(
+  () => import(/* webpackPrefetch: true, webpackChunkName: "PostContainer" */ '../PostContainer'),
+);
+const TermContainer = loadable(
+  () => import(/* webpackPrefetch: true, webpackChunkName: "TermContainer" */ '../TermContainer'),
+);
+const TimelineContainer = loadable(
+  () => import(/* webpackPrefetch: true, webpackChunkName: "TimelineContainer" */ '../TimelineContainer'),
+);
+const UserProfileContainer = loadable(
+  () => import(/* webpackPrefetch: true, webpackChunkName: "UserProfileContainer" */ '../UserProfileContainer'),
 );
 
 const AppContainer: React.VFC = () => {
@@ -52,52 +61,17 @@ const AppContainer: React.VFC = () => {
         onRequestOpenPostModal={handleRequestOpenPostModal}
       >
         <Routes>
-          <Route
-            element={
-              <Loadable>
-                <TimelineContainer />
-              </Loadable>
-            }
-            path="/"
-          />
-          <Route
-            element={
-              <Loadable>
-                <UserProfileContainer />
-              </Loadable>
-            }
-            path="/users/:username"
-          />
-          <Route
-            element={
-              <Loadable>
-                <PostContainer />
-              </Loadable>
-            }
-            path="/posts/:postId"
-          />
-          <Route
-            element={
-              <Loadable>
-                <TermContainer />
-              </Loadable>
-            }
-            path="/terms"
-          />
+          <Route element={<TimelineContainer />} path="/" />
+          <Route element={<UserProfileContainer />} path="/users/:username" />
+          <Route element={<PostContainer />} path="/posts/:postId" />
+          <Route element={<TermContainer />} path="/terms" />
           <Route element={<NotFoundContainer />} path="*" />
         </Routes>
       </AppPage>
-
       {modalType === 'auth' ? (
-        <Loadable>
-          <AuthModalContainer onRequestCloseModal={handleRequestCloseModal} onUpdateActiveUser={setActiveUser} />
-        </Loadable>
+        <AuthModalContainer onRequestCloseModal={handleRequestCloseModal} onUpdateActiveUser={setActiveUser} />
       ) : null}
-      {modalType === 'post' ? (
-        <Loadable>
-          <NewPostModalContainer onRequestCloseModal={handleRequestCloseModal} />
-        </Loadable>
-      ) : null}
+      {modalType === 'post' ? <NewPostModalContainer onRequestCloseModal={handleRequestCloseModal} /> : null}
     </>
   );
 };
