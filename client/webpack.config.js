@@ -76,7 +76,7 @@ const config = {
       NODE_ENV: process.env.NODE_ENV || 'production',
     }),
     new CompressionPlugin({
-      test: /\.(js|css)$/,
+      test: /\.(js|jsx|ts|tsx|css)$/,
       filename: '[path][base].br',
       algorithm: 'brotliCompress',
       compressionOptions: {
@@ -84,7 +84,6 @@ const config = {
           [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
         },
       },
-      threshold: 10240,
       minRatio: 0.8,
     }),
     new MiniCssExtractPlugin({
