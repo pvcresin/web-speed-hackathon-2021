@@ -10,6 +10,18 @@ main に push するとコードが[heroku でデプロイ](https://dashboard.he
 
 [LeaderBoard](https://github.com/CyberAgentHack/web-speed-hackathon-2021-leaderboard) の [Issue ](https://github.com/CyberAgentHack/web-speed-hackathon-2021-leaderboard/issues/21)に`/rerun`とコメントすると測定される
 
+Deploy
+
+```sh
+gcloud app deploy --project=pvcresin-wsh-2021
+```
+
+Browse
+
+```sh
+gcloud app browse --project=pvcresin-wsh-2021
+```
+
 ## 参考
 
 今回の問題についての Post
