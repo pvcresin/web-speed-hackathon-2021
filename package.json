@@ -3,8 +3,7 @@
   "license": "MPL-2.0",
   "scripts": {
     "build": "yarn workspaces run build",
-    "start": "yarn workspace @web-speed-hackathon-2021/server start",
-    "deploy": "gcloud app deploy --project=pvcresin-wsh-2021"
+    "start": "yarn workspace @web-speed-hackathon-2021/server start"
   },
   "workspaces": [
     "client",
