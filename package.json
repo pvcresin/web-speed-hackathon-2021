@@ -2,10 +2,9 @@
   "private": true,
   "license": "MPL-2.0",
   "scripts": {
-    "gcp-build": "yarn build",
-    "build": "yarn workspaces run build",
-    "start": "yarn workspace @web-speed-hackathon-2021/server start",
-    "deploy": "gcloud app deploy --project=pvcresin-wsh-2021"
+    "build": "npm run build --workspaces",
+    "start": "npm run start -w @web-speed-hackathon-2021/server",
+    "deploy": "npm run build && gcloud app deploy --project=pvcresin-wsh-2021"
   },
   "workspaces": [
     "client",
