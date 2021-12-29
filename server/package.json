@@ -6,8 +6,9 @@
   "main": "src/index.js",
   "scripts": {
     "build": "echo noop",
-    "prestart": "npm-run-all prestart:clean prestart:init",
-    "start": "babel-node --experimental-wasm-threads src/index.js",
+    "start": "cross-env SERVER=gcp babel-node --experimental-wasm-threads src/index.js",
+    "start:local": "babel-node --experimental-wasm-threads src/index.js",
+    "prestart:local": "npm-run-all prestart:clean prestart:init",
     "prestart:clean": "rimraf ../upload",
     "prestart:init": "mkdirp ../upload/images ../upload/movies ../upload/sounds"
   },
@@ -50,7 +51,8 @@
     "@types/http-errors": "1.8.1",
     "@types/serve-static": "1.13.10",
     "@types/sqlite3": "3.1.7",
-    "@types/uuid": "8.3.3"
+    "@types/uuid": "8.3.3",
+    "cross-env": "7.0.3"
   },
   "engines": {
     "node": "16.x.x"
