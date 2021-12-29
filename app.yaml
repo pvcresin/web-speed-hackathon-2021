@@ -1,1 +1,2 @@
 runtime: nodejs16
+# handlersでpublicとか配信したほうがCDN乗るかも？
