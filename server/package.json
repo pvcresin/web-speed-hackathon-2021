@@ -8,7 +8,7 @@
     "build": "echo noop",
     "start": "cross-env SERVER=gcp babel-node --experimental-wasm-threads src/index.js",
     "start:local": "babel-node --experimental-wasm-threads src/index.js",
-    "prestart:local": "npm-run-all prestart:clean prestart:init",
+    "prestart:local0": "npm-run-all prestart:clean prestart:init",
     "prestart:clean": "rimraf ../upload",
     "prestart:init": "mkdirp ../upload/images ../upload/movies ../upload/sounds"
   },
@@ -23,10 +23,12 @@
     "bcrypt": "5.0.1",
     "body-parser": "1.19.0",
     "connect-history-api-fallback": "1.6.0",
+    "cross-env": "7.0.2",
     "express": "4.17.1",
     "express-promise-router": "4.1.0",
     "express-session": "1.17.2",
     "express-static-gzip": "^2.1.1",
+    "fs-extra": "^10.0.0",
     "http-errors": "1.8.1",
     "iconv-lite": "0.6.3",
     "jschardet": "3.0.0",
@@ -51,8 +53,7 @@
     "@types/http-errors": "1.8.1",
     "@types/serve-static": "1.13.10",
     "@types/sqlite3": "3.1.7",
-    "@types/uuid": "8.3.3",
-    "cross-env": "7.0.3"
+    "@types/uuid": "8.3.3"
   },
   "engines": {
     "node": "16.x.x"
