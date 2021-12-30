@@ -5,10 +5,10 @@
   "license": "MPL-2.0",
   "main": "src/index.js",
   "scripts": {
-    "build": "echo noop",
-    "start": "cross-env SERVER=gcp babel-node --experimental-wasm-threads src/index.js",
-    "start:local": "babel-node --experimental-wasm-threads src/index.js",
-    "prestart:local": "npm-run-all prestart:clean prestart:init",
+    "build": "cross-env NODE_ENV=production webpack",
+    "start": "node --experimental-wasm-threads dist/index.js",
+    "prebuild": "rimraf dist",
+    "prestart": "npm-run-all prestart:clean prestart:init",
     "prestart:clean": "rimraf ../upload",
     "prestart:init": "mkdirp ../upload/images ../upload/movies ../upload/sounds"
   },
@@ -52,7 +52,10 @@
     "@types/serve-static": "1.13.10",
     "@types/sqlite3": "3.1.7",
     "@types/uuid": "8.3.3",
-    "cross-env": "7.0.3"
+    "babel-loader": "^8.2.3",
+    "cross-env": "7.0.3",
+    "webpack": "5.64.2",
+    "webpack-cli": "4.9.1"
   },
   "engines": {
     "node": "16.x.x"
